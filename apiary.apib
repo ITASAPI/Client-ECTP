@@ -23,10 +23,10 @@ This endpoint initialises the export of data to three tables: • GPLRep P&L, �
 |property|description|type|max length|notes|constraint|
 |--------|-----------|----|----------|-----|----------|
 |Request|Indicates Initiation|`string`|||send value `‘InitiateExport’`|
-|TEIDList|list of Trading Entities to include in the export.|array|2|||
+|TEIDList|list of Trading Entities to include in the export.|`array`|2|||
 |DateToProcess|Represent the requested ‘close of business’ day.|`DateTime`||||
 
-### ReportExportRequest [POST]
+### Create ReportExportRequest [POST]
 
 + Request (application/json; charset=utf-8)
     + Header
