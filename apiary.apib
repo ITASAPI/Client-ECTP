@@ -17,13 +17,16 @@ Account details for Banks nominated during the Invoicing process. As such requir
 # Group Data Functions
 
 ## Report Export Request [/ITAS/ClientFunctions/Data/Service100Export/]
-
-### ReportExportRequest [POST]
 Reporting extract request specific to end of day off-system reconciliation processes. <br />
 This endpoint initialises the export of data to three tables: • GPLRep P&L, • GPLRep Valuation and • Trade Data (derived from phys01).
 
-Proposed Request value of ‘InitiateExport’ to segregate from potential futures variations. <br />
-DateToProcess will represent the requested ‘close of business’ day in datetime format which will be used as part of the verification procedure.<br />
+|property|description|type|max length|notes|constraint|
+|--------|-----------|----|----------|-----|----------|
+|Request|Indicates Initiation|`string`|||send value `‘InitiateExport’`|
+|TEIDList|list of Trading Entities to include in the export.|array|2|||
+|DateToProcess|Represent the requested ‘close of business’ day.|||`DateTime`||
+
+### ReportExportRequest [POST]
 
 + Request (application/json; charset=utf-8)
     + Header
