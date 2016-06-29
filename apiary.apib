@@ -31,7 +31,7 @@ Account details for Banks nominated during the Invoicing process. As such requir
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
-        + Data (TradingEntityArray)
+        + Pagination (Pagination)
         + Response (200 SuccessResponse)
 
 + Response 400 (application/json; charset=utf-8)
@@ -145,6 +145,11 @@ Model Header containing AccessToken
 + CPBankSwift: asdfg (string)
 + CPBankAccNum: `2112-1212` (string)
 
+## Pagination (object)
++ Total: 547 (number) - total number of records available
++ Top: 200 (number) - max number returned per message 
++ Skip: 400 (number) - number of records skipped
++ Returned: 146 (number) - actual number returned
 
 ## Service100Export Request (object)
 + Request: InitiateExport (required, string)
