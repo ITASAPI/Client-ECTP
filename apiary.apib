@@ -1,80 +1,29 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://itas.apiary.io/
+VERSION: 1.0
 
 # Client ECTP
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+This collection of end points are specific to ECTP
 
-## Questions Collection [/questions]
+# Group Finance
 
-### List All Questions [GET]
+## Invoice Bank Accounts [/ITAS/ClientFunctions/Finance/{TradingEntityId}/InvoiceBankAccount]
+Account details for Banks nominated during the Invoicing process. As such requires nomination of the Trading Entity in the URI.
 
-+ Response 200 (application/json)
+### InvoiceBankAccount Lookup [GET]
 
-        [
-            {
-                "questions": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
 
-### Create a New Question [POST]
+# Group Data Functions
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+## Report Export Request [/ITAS/ClientFunctions/Data/Service100Export/]
 
-+ Request (application/json)
+### ReportExportRequest [POST]
+Reporting extract request specific to end of day off-system reconciliation processes. <br />
+This endpoint initialises the export of data to three tables: • GPLRep P&L, • GPLRep Valuation and • Trade Data (derived from phys01).
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+Proposed Request value of ‘InitiateExport’ to segregate from potential futures variations. <br />
+DateToProcess will represent the requested ‘close of business’ day in datetime format which will be used as part of the verification procedure.<br />
 
-+ Response 201 (application/json)
 
-    + Headers
 
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
