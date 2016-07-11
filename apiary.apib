@@ -8,7 +8,7 @@ This collection of end points are specific to ECTP
 
 # Group Finance
 
-## Invoice Bank Accounts [/ITAS/ClientFunctions/Finance/{TradingEntityId}/InvoiceBankAccount]
+## Invoice Bank Accounts [/ITAS/ClientFunctions/Finance/{TradingEntityId}/InvoiceBankAccount{DocumentReference}]
 Account details for Banks nominated during the Invoicing process. As such requires nomination of the Trading Entity in the URI.
 
 ### InvoiceBankAccount Lookup [GET]
@@ -32,6 +32,7 @@ Account details for Banks nominated during the Invoicing process. As such requir
 
 + Parameters
     + TradingEntityId: AB (required, string) 
+    + DocumentReference: PI1500000 (required. string)
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
@@ -160,5 +161,3 @@ Model Header containing AccessToken
 
 ## TradingEntityArray (object)
 + TEID: AB (string)
-
-
