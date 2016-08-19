@@ -51,13 +51,14 @@ Account details for Banks nominated during the Invoicing process. As such requir
 Reporting extract request specific to end of day off-system reconciliation processes. <br />
 This endpoint initialises the export of data to three tables: • GPLRep P&L, • GPLRep Valuation and • Trade Data (derived from phys01).
 
+### Create ReportExportRequest [POST]
+
 |property|description|type|max length|notes|constraint|
 |--------|-----------|----|----------|-----|----------|
 |Request|Indicates Initiation|`string`|||send value `‘InitiateExport’`|
 |TEIDList|list of Trading Entities to include in the export.|`array`|2|||
 |DateToProcess|Represent the requested ‘close of business’ day.|`datetime`||||
 
-### Create ReportExportRequest [POST]
 
 + Request (application/json; charset=utf-8)
     + Header
