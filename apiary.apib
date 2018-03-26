@@ -59,11 +59,11 @@ Account details for Banks nominated during the Invoicing process. As such requir
 
 # Group Data Functions
 
-## Report Export Request [/ITAS/ClientFunctions/Data/Service100Export/]
+## Service 100 Report Export Request [/ITAS/ClientFunctions/Data/Service100Export/]
 Reporting extract request specific to end of day off-system reconciliation processes. <br />
 This endpoint initialises the export of data to three tables: • GPLRep P&L, • GPLRep Valuation and • Trade Data (derived from phys01). * <a href="/#introduction/disclaimer"> (Disclaimer)</a>
 
-### Create ReportExportRequest [POST]
+### Create Service100 Report Export Request [POST]
 
 |property|description|type|max length|notes|constraint|
 |--------|-----------|----|----------|-----|----------|
@@ -78,6 +78,38 @@ This endpoint initialises the export of data to three tables: • GPLRep P&L, �
             AccessToken:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
 
     + Attributes (Service100Export Request)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes 
+        + Response (200 SuccessResponse)
+
++ Response 400 (application/json; charset=utf-8)
+    + Attributes (400 Response)
+
++ Response 404 (application/json; charset=utf-8)
+    + Attributes (404 Response)
+
+## Service 101 Report Export Request [/ITAS/ClientFunctions/Data/Service101Export/]
+Reporting extract request specific to end of day off-system reconciliation processes. <br />
+This endpoint initialises the export of data to three tables: • GPLRep P&L, • GPLRep Valuation and • Trade Data (derived from phys01), and allows the comparison date to be specified. * <a href="/#introduction/disclaimer"> (Disclaimer)</a>
+
+### Create Service101 Report Export Request [POST]
+
+|property|description|type|max length|notes|constraint|
+|--------|-----------|----|----------|-----|----------|
+|Request|Indicates Initiation|`string`|||currently static: `InitiateExport`|
+|TEIDList|list of Trading Entities to include in the export.|`array`|2|||
+|DateToProcess|Represent the requested ‘close of business’ day.|`string`|8|Applies to all Trading Entities sent in the `TEIDList` array.|Use format `YYYYMMDD`|
+|DateForComparison|Represents the date for comparisson.|`string`|8|Applies to all Trading Entities sent in the `TEIDList` array.|Use format `YYYYMMDD` or 'Current'|
+
+
+
++ Request (application/json; charset=utf-8)
+    + Header
+
+            AccessToken:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
+
+    + Attributes (Service101Export Request)
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
@@ -171,6 +203,12 @@ Model Header containing AccessToken
 + Request: InitiateExport (required, string)
 + TEIDList (required, array [TradingEntityArray])
 + DateToProcess: `20160623` (required, string)
+
+## Service101Export Request (object)
++ Request: InitiateExport (required, string)
++ TEIDList (required, array [TradingEntityArray])
++ DateToProcess: `20180301` (required, string)
++ DateForComparison: '20180332' (required, string)
 
 ## TradingEntityArray (object)
 + TEID: AB (string)
